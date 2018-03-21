@@ -1,0 +1,6 @@
+[
+  { id: 1000, nombre: 'Prensa General' }
+, { id: 1010, nombre: 'Deportes' }
+, { id: 1020, nombre: 'Ciencia' }
+, { id: 1030, nombre: 'Radio' }
+]

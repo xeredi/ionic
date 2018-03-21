@@ -1,0 +1,33 @@
+import { Component } from '@angular/core';
+import { NavController, NavParams } from 'ionic-angular';
+import { CanalDetailPage } from '../canal-detail/canal-detail';
+
+@Component( {
+    selector: 'page-publicador-detail',
+    templateUrl: 'publicador-detail.html',
+} )
+export class PublicadorDetailPage {
+
+    pblr: any;
+    cnalList: any[];
+
+    constructor( public navCtrl: NavController, public navParams: NavParams ) {
+        this.pblr = navParams.get( "pblr" );
+        this.cnalList = [
+            { id: 1, nombre: 'Marca - Portada', followed: false }
+            , { id: 2, nombre: 'Marca - Futbol', followed: false }
+            , { id: 3, nombre: 'Marca - Primera Division', followed: false }
+        ];
+    }
+
+    ionViewDidLoad() {
+        console.log( 'ionViewDidLoad PublicadorDetailPage' );
+    }
+
+    canalDetail( cnal: any ) {
+        console.log( 'click!!' );
+
+        this.navCtrl.push( CanalDetailPage, { cnal: cnal } );
+    }
+
+}

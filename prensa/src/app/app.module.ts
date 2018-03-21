@@ -4,27 +4,52 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
+import { SQLite } from '@ionic-native/sqlite';
+
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { CategoriaDetailPage } from '../pages/categoria-detail/categoria-detail';
+import { PublicadorDetailPage } from '../pages/publicador-detail/publicador-detail';
+import { CanalDetailPage } from '../pages/canal-detail/canal-detail';
+import { NoticiaDetailPage } from '../pages/noticia-detail/noticia-detail';
 
-@NgModule({
-  declarations: [
-    MyApp,
-    HomePage
-  ],
-  imports: [
-    BrowserModule,
-    IonicModule.forRoot(MyApp)
-  ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp,
-    HomePage
-  ],
-  providers: [
-    StatusBar,
-    SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
-  ]
-})
-export class AppModule {}
+import { CategoriaProvider } from '../providers/categoria/categoria';
+import { LoaderProvider } from '../providers/loader/loader';
+import { SqliteProvider } from '../providers/sqlite/sqlite';
+import { PublicadorProvider } from '../providers/publicador/publicador';
+
+@NgModule( {
+    declarations: [
+        MyApp,
+        HomePage,
+        CategoriaDetailPage,
+        PublicadorDetailPage,
+        CanalDetailPage,
+        NoticiaDetailPage
+    ],
+    imports: [
+        BrowserModule,
+        IonicModule.forRoot( MyApp )
+    ],
+    bootstrap: [IonicApp],
+    entryComponents: [
+        MyApp,
+        HomePage,
+        CategoriaDetailPage,
+        PublicadorDetailPage,
+        CanalDetailPage,
+        NoticiaDetailPage
+    ],
+    providers: [
+        StatusBar,
+        SplashScreen,
+        SQLite,
+        { provide: ErrorHandler, useClass: IonicErrorHandler },
+        CategoriaProvider,
+        LoaderProvider,
+    SqliteProvider,
+    PublicadorProvider,
+    PublicadorProvider
+    ]
+} )
+export class AppModule { }

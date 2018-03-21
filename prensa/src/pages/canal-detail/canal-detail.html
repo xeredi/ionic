@@ -1,0 +1,6 @@
+<ion-header> <ion-navbar> <ion-title>canal-detail</ion-title> </ion-navbar> </ion-header>
+
+
+<ion-content padding> Canal: {{cnal.nombre}} <ion-list>
+<button ion-item *ngFor="let pbln of pblnList" (click)="noticiaDetail(pbln)">{{ pbln.titulo }}</button>
+</ion-list> </ion-content>
