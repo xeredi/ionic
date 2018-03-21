@@ -3,6 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { HttpModule } from '@angular/http';
 
 import { SQLite } from '@ionic-native/sqlite';
 
@@ -28,7 +29,7 @@ import { PublicadorProvider } from '../providers/publicador/publicador';
         NoticiaDetailPage
     ],
     imports: [
-        BrowserModule,
+        BrowserModule, HttpModule,
         IonicModule.forRoot( MyApp )
     ],
     bootstrap: [IonicApp],

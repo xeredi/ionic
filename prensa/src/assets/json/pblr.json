@@ -1,0 +1,14 @@
+{
+	"data": [
+        { "id": "10000", "categoriaId": "1000", "nombre": "El Pais" }
+        , { "id": "10001", "categoriaId": "1000", "nombre": "El Mundo" }
+        , { "id": "10002", "categoriaId": "1010", "nombre": "Sport" }
+        , { "id": "10003", "categoriaId": "1010", "nombre": "Mundo Deportivo" }
+        , { "id": "10004", "categoriaId": "1010", "nombre": "Marca" }
+        , { "id": "10005", "categoriaId": "1020", "nombre": "Muy Interesante" }
+        , { "id": "10006", "categoriaId": "1030", "nombre": "Cadena SER" }
+        , { "id": "10007", "categoriaId": "1030", "nombre": "Onda Cero" }
+        , { "id": "10008", "categoriaId": "1030", "nombre": "COPE" }
+	]
+}
+

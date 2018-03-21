@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Http } from '@angular/http';
 
 import { CategoriaProvider } from '../providers/categoria/categoria';
 import { PublicadorProvider } from '../providers/publicador/publicador';
@@ -19,6 +20,7 @@ export class MyApp {
         , splashScreen: SplashScreen
         , private categoriaProvider: CategoriaProvider
         , private publicadorProvider: PublicadorProvider
+        , private http: Http
     ) {
         platform.ready().then(() => {
             statusBar.styleDefault();
@@ -31,12 +33,24 @@ export class MyApp {
         console.log( "Create DB" );
 
         this.categoriaProvider.createTable();
-        this.categoriaProvider.save( { id: 1000, nombre: 'Prensa General' } );
-        this.categoriaProvider.save( { id: 1010, nombre: 'Deportes' } );
-        this.categoriaProvider.save( { id: 1020, nombre: 'Ciencia' } );
-        this.categoriaProvider.save( { id: 1030, nombre: 'Radio' } );
+
+        this.http.get( "assets/json/ctgr.json" ).subscribe( data => {
+            var ctgrList = data.json().data;
+
+            for ( var i in ctgrList ) {
+                this.categoriaProvider.save( ctgrList[i] );
+            }
+        } );
 
         this.publicadorProvider.createTable();
+        this.http.get( "assets/json/pblr.json" ).subscribe( data => {
+            var pblrList = data.json().data;
+
+            for ( var i in pblrList ) {
+                this.publicadorProvider.save( pblrList[i] );
+            }
+        } );
+/*
         this.publicadorProvider.save( { id: 10000, categoriaId: 1000, nombre: 'El Pais' } );
         this.publicadorProvider.save( { id: 10001, categoriaId: 1000, nombre: 'El Mundo' } );
         this.publicadorProvider.save( { id: 10002, categoriaId: 1010, nombre: 'Sport' } );
@@ -46,7 +60,7 @@ export class MyApp {
         this.publicadorProvider.save( { id: 10006, categoriaId: 1030, nombre: 'Cadena SER' } );
         this.publicadorProvider.save( { id: 10007, categoriaId: 1030, nombre: 'Onda Cero' } );
         this.publicadorProvider.save( { id: 10008, categoriaId: 1030, nombre: 'COPE' } );
-
+*/
         return this;
     }
 }
