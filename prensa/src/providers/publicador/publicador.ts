@@ -6,7 +6,15 @@ import { SqliteProvider } from '../sqlite/sqlite';
 export class PublicadorProvider extends SqliteProvider {
     createTable() {
         this.open().then(() => {
-            this.db.executeSql( 'CREATE TABLE IF NOT EXISTS publicador (id INTEGER PRIMARY KEY AUTOINCREMENT, categoriaId INTEGER NOT NULL, url TEXT NOT NULL, logo TEXT NOT NULL, nombre TEXT NOT NULL, tipo TEXT NOT NULL)', [] ).then( data => data );
+            this.db.executeSql(
+                'CREATE TABLE IF NOT EXISTS publicador ('
+                + ' id INTEGER PRIMARY KEY AUTOINCREMENT'
+                + ' , categoriaId INTEGER NOT NULL'
+                + ' , url TEXT NOT NULL UNIQUE'
+                + ' , logo TEXT NOT NULL'
+                + ' , nombre TEXT NOT NULL'
+                + ' , tipo TEXT NOT NULL'
+                + ' )', [] ).then( data => data );
         } );
     }
 
@@ -19,7 +27,7 @@ export class PublicadorProvider extends SqliteProvider {
     save( item: any ) {
         this.open().then(() => {
             this.db.executeSql( 'SELECT 1 FROM publicador WHERE url = ? ', [item.url] ).then( data => {
-                console.log( "exists: " + ( data.rows.length > 0 ) );
+                // console.log( "exists: " + ( data.rows.length > 0 ) );
                 if ( data.rows.length <= 0 ) {
                     this.db.executeSql(
                         'INSERT INTO publicador (categoriaId, url, logo, nombre, tipo) SELECT id, ?, ?, ?, ? FROM categoria WHERE nombre = ?'

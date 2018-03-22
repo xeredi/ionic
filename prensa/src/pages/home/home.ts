@@ -13,7 +13,7 @@ export class HomePage {
     ctgrList: any[];
 
     constructor( public navCtrl: NavController, private ctgrProvider: CategoriaProvider ) {
-        console.log( "Cargar categorias" );
+        // console.log( "Cargar categorias" );
 
         this.ctgrProvider.selectAll().then(( result ) => {
             this.ctgrList = result;
@@ -22,7 +22,7 @@ export class HomePage {
     }
 
     categoriaDetail( ctgr: any ) {
-        console.log( 'click!!' );
+        // console.log( 'click!!' );
 
         this.navCtrl.push( CategoriaDetailPage, { ctgr: ctgr } );
     }

@@ -18,6 +18,7 @@ import { CategoriaProvider } from '../providers/categoria/categoria';
 import { LoaderProvider } from '../providers/loader/loader';
 import { SqliteProvider } from '../providers/sqlite/sqlite';
 import { PublicadorProvider } from '../providers/publicador/publicador';
+import { CanalProvider } from '../providers/canal/canal';
 
 @NgModule( {
     declarations: [
@@ -50,7 +51,8 @@ import { PublicadorProvider } from '../providers/publicador/publicador';
         LoaderProvider,
     SqliteProvider,
     PublicadorProvider,
-    PublicadorProvider
+    PublicadorProvider,
+    CanalProvider
     ]
 } )
 export class AppModule { }

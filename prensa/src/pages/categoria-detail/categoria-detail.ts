@@ -20,11 +20,11 @@ export class CategoriaDetailPage {
             this.pblrList = result;
         } );
 
-        console.log( 'categoria: ' + this.ctgr );
+        // console.log( 'categoria: ' + this.ctgr );
     }
 
     ionViewDidLoad() {
-        console.log( 'ionViewDidLoad CategoriaDetailPage' );
+        // console.log( 'ionViewDidLoad CategoriaDetailPage' );
     }
 
     publicadorDetail( pblr: any ) {

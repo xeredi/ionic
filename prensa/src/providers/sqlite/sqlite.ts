@@ -8,8 +8,6 @@ export class SqliteProvider {
     public db: SQLiteObject;
 
     constructor() {
-        console.log( 'Hello SqliteProvider Provider' );
-
         if ( !this.db ) {
             console.log( 'Create connection' );
 

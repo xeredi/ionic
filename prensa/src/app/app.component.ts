@@ -6,6 +6,7 @@ import { Http } from '@angular/http';
 
 import { CategoriaProvider } from '../providers/categoria/categoria';
 import { PublicadorProvider } from '../providers/publicador/publicador';
+import { CanalProvider } from '../providers/canal/canal';
 
 import { HomePage } from '../pages/home/home';
 @Component( {
@@ -20,6 +21,7 @@ export class MyApp {
         , splashScreen: SplashScreen
         , private categoriaProvider: CategoriaProvider
         , private publicadorProvider: PublicadorProvider
+        , private canalProvider: CanalProvider
         , private http: Http
     ) {
         platform.ready().then(() => {
@@ -32,7 +34,7 @@ export class MyApp {
     private createDatabase() {
         console.log( "Create DB" );
 
-        this.categoriaProvider.dropTable();
+        //this.categoriaProvider.dropTable();
         this.categoriaProvider.createTable();
         this.http.get( "assets/json/ctgr.json" ).subscribe( data => {
             var ctgrList = data.json().data;
@@ -42,7 +44,7 @@ export class MyApp {
             }
         } );
 
-        this.publicadorProvider.dropTable();
+        //this.publicadorProvider.dropTable();
         this.publicadorProvider.createTable();
         this.http.get( "assets/json/pblr.json" ).subscribe( data => {
             var pblrList = data.json().data;
@@ -51,17 +53,17 @@ export class MyApp {
                 this.publicadorProvider.save( pblrList[i] );
             }
         } );
-/*
-        this.publicadorProvider.save( { id: 10000, categoriaId: 1000, nombre: 'El Pais' } );
-        this.publicadorProvider.save( { id: 10001, categoriaId: 1000, nombre: 'El Mundo' } );
-        this.publicadorProvider.save( { id: 10002, categoriaId: 1010, nombre: 'Sport' } );
-        this.publicadorProvider.save( { id: 10003, categoriaId: 1010, nombre: 'Mundo Deportivo' } );
-        this.publicadorProvider.save( { id: 10004, categoriaId: 1010, nombre: 'Marca' } );
-        this.publicadorProvider.save( { id: 10005, categoriaId: 1020, nombre: 'Muy Interesante' } );
-        this.publicadorProvider.save( { id: 10006, categoriaId: 1030, nombre: 'Cadena SER' } );
-        this.publicadorProvider.save( { id: 10007, categoriaId: 1030, nombre: 'Onda Cero' } );
-        this.publicadorProvider.save( { id: 10008, categoriaId: 1030, nombre: 'COPE' } );
-*/
+
+        //this.canalProvider.dropTable();
+        this.canalProvider.createTable();
+        this.http.get( "assets/json/cnal.json" ).subscribe( data => {
+            var cnalList = data.json().data;
+
+            for ( var i in cnalList ) {
+                this.canalProvider.save( cnalList[i] );
+            }
+        } );
+
         return this;
     }
 }

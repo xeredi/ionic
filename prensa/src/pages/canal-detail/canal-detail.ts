@@ -17,11 +17,11 @@ export class CanalDetailPage {
     }
 
     ionViewDidLoad() {
-        console.log( 'ionViewDidLoad CanalDetailPage' );
+        // console.log( 'ionViewDidLoad CanalDetailPage' );
     }
 
     noticiaDetail( pbln: any ) {
-        console.log( 'click!!' );
+        // console.log( 'click!!' );
 
         this.navCtrl.push( NoticiaDetailPage, { pbln: pbln } );
     }

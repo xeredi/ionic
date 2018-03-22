@@ -19,7 +19,7 @@ export class CategoriaProvider extends SqliteProvider {
     save( item: any ) {
         this.open().then(() => {
             this.db.executeSql( 'SELECT 1 FROM categoria WHERE nombre = ?', [item.nombre] ).then( data => {
-                console.log( "exists: " + ( data.rows.length > 0 ) );
+                // console.log( "exists: " + ( data.rows.length > 0 ) );
                 if ( data.rows.length > 0 ) {
                     this.db.executeSql( 'UPDATE categoria SET icono = ? WHERE nombre = ?', [item.icono, item.nombre] ).then( data => data );
                 } else {
