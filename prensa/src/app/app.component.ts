@@ -32,8 +32,8 @@ export class MyApp {
     private createDatabase() {
         console.log( "Create DB" );
 
+        this.categoriaProvider.dropTable();
         this.categoriaProvider.createTable();
-
         this.http.get( "assets/json/ctgr.json" ).subscribe( data => {
             var ctgrList = data.json().data;
 
@@ -42,6 +42,7 @@ export class MyApp {
             }
         } );
 
+        this.publicadorProvider.dropTable();
         this.publicadorProvider.createTable();
         this.http.get( "assets/json/pblr.json" ).subscribe( data => {
             var pblrList = data.json().data;

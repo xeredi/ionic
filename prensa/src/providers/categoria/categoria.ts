@@ -5,12 +5,14 @@ import { SqliteProvider } from '../sqlite/sqlite';
 @Injectable()
 export class CategoriaProvider extends SqliteProvider {
     createTable() {
-        let sql = 'CREATE TABLE IF NOT EXISTS categoria (id INTEGER PRIMARY KEY, nombre TEXT NOT NULL UNIQUE)';
-
-        console.log( sql );
-
         this.open().then(() => {
-            this.db.executeSql( sql, [] ).then( data => data );
+            this.db.executeSql( 'CREATE TABLE IF NOT EXISTS categoria (id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT NOT NULL UNIQUE, icono TEXT NOT NULL)', [] ).then( data => data );
+        } );
+    }
+
+    dropTable() {
+        this.open().then(() => {
+            this.db.executeSql( 'DROP TABLE IF EXISTS categoria', [] ).then( data => data );
         } );
     }
 
@@ -19,9 +21,9 @@ export class CategoriaProvider extends SqliteProvider {
             this.db.executeSql( 'SELECT 1 FROM categoria WHERE nombre = ?', [item.nombre] ).then( data => {
                 console.log( "exists: " + ( data.rows.length > 0 ) );
                 if ( data.rows.length > 0 ) {
-                    this.db.executeSql( 'UPDATE categoria SET nombre = ? WHERE id = ?', [item.nombre, item.id] ).then( data => data );
+                    this.db.executeSql( 'UPDATE categoria SET icono = ? WHERE nombre = ?', [item.icono, item.nombre] ).then( data => data );
                 } else {
-                    this.db.executeSql( 'INSERT INTO categoria (nombre, id) VALUES (?, ?)', [item.nombre, item.id] ).then( data => data );
+                    this.db.executeSql( 'INSERT INTO categoria (icono, nombre) VALUES (?, ?)', [item.icono, item.nombre] ).then( data => data );
                 }
             } );
         } );
@@ -29,7 +31,7 @@ export class CategoriaProvider extends SqliteProvider {
 
     selectAll() {
         return this.open().then(() => {
-            return this.db.executeSql( 'SELECT id, nombre FROM categoria ORDER BY id', [] )
+            return this.db.executeSql( 'SELECT id, nombre, icono FROM categoria ORDER BY id', [] )
                 .then( data => {
                     var items = [];
 

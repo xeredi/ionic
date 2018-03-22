@@ -5,23 +5,25 @@ import { SqliteProvider } from '../sqlite/sqlite';
 @Injectable()
 export class PublicadorProvider extends SqliteProvider {
     createTable() {
-        let sql = 'CREATE TABLE IF NOT EXISTS publicador (id INTEGER PRIMARY KEY, categoriaId INTEGER NOT NULL, nombre TEXT NOT NULL)';
-
-        console.log( sql );
-
         this.open().then(() => {
-            this.db.executeSql( sql, [] ).then( data => data );
+            this.db.executeSql( 'CREATE TABLE IF NOT EXISTS publicador (id INTEGER PRIMARY KEY AUTOINCREMENT, categoriaId INTEGER NOT NULL, url TEXT NOT NULL, logo TEXT NOT NULL, nombre TEXT NOT NULL, tipo TEXT NOT NULL)', [] ).then( data => data );
+        } );
+    }
+
+    dropTable() {
+        this.open().then(() => {
+            this.db.executeSql( 'DROP TABLE IF EXISTS publicador', [] ).then( data => data );
         } );
     }
 
     save( item: any ) {
         this.open().then(() => {
-            this.db.executeSql( 'SELECT 1 FROM publicador WHERE categoriaId = ? AND nombre = ? ', [item.categoriaId, item.nombre] ).then( data => {
+            this.db.executeSql( 'SELECT 1 FROM publicador WHERE url = ? ', [item.url] ).then( data => {
                 console.log( "exists: " + ( data.rows.length > 0 ) );
                 if ( data.rows.length <= 0 ) {
                     this.db.executeSql(
-                        'INSERT INTO publicador (id, categoriaId, nombre) VALUES (?, ?, ?)'
-                        , [item.id, item.categoriaId, item.nombre] ).then( data => data );
+                        'INSERT INTO publicador (categoriaId, url, logo, nombre, tipo) SELECT id, ?, ?, ?, ? FROM categoria WHERE nombre = ?'
+                        , [item.url, item.logo, item.nombre, item.tipo, item.categoria] ).then( data => data );
                 }
             } );
         } );
@@ -29,7 +31,7 @@ export class PublicadorProvider extends SqliteProvider {
 
     selectByCategoria( categoriaId: number ) {
         return this.open().then(() => {
-            return this.db.executeSql( 'SELECT id, categoriaId, nombre FROM publicador WHERE categoriaId = ? ORDER BY nombre', [categoriaId] )
+            return this.db.executeSql( 'SELECT id, categoriaId, url, logo, nombre, tipo FROM publicador WHERE categoriaId = ? ORDER BY nombre', [categoriaId] )
                 .then( data => {
                     var items = [];
 
