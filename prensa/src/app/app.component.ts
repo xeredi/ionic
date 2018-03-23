@@ -24,17 +24,19 @@ export class MyApp {
         , private canalProvider: CanalProvider
         , private http: Http
     ) {
-        platform.ready().then(() => {
-            statusBar.styleDefault();
-            this.createDatabase();
-            splashScreen.hide();
-        } );
+        platform.ready()
+            .then(() => {
+                statusBar.styleDefault();
+                this.createDatabase();
+                splashScreen.hide();
+            } )
+            .catch( error => { console.log( error ); } );
     }
 
     private createDatabase() {
         console.log( "Create DB" );
 
-        //this.categoriaProvider.dropTable();
+        this.categoriaProvider.dropTable();
         this.categoriaProvider.createTable();
         this.http.get( "assets/json/ctgr.json" ).subscribe( data => {
             var ctgrList = data.json().data;
@@ -44,7 +46,7 @@ export class MyApp {
             }
         } );
 
-        //this.publicadorProvider.dropTable();
+        this.publicadorProvider.dropTable();
         this.publicadorProvider.createTable();
         this.http.get( "assets/json/pblr.json" ).subscribe( data => {
             var pblrList = data.json().data;
@@ -54,7 +56,7 @@ export class MyApp {
             }
         } );
 
-        //this.canalProvider.dropTable();
+        this.canalProvider.dropTable();
         this.canalProvider.createTable();
         this.http.get( "assets/json/cnal.json" ).subscribe( data => {
             var cnalList = data.json().data;

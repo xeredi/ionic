@@ -15,9 +15,11 @@ export class PublicadorDetailPage {
 
     constructor( public navCtrl: NavController, public navParams: NavParams, private cnalProvider: CanalProvider ) {
         this.pblr = navParams.get( "pblr" );
-        this.cnalProvider.selectByPublicador( this.pblr.id ).then(( result ) => {
-            this.cnalList = result;
-        } );
+        this.cnalProvider.selectByPublicador( this.pblr.id )
+            .then(( result ) => {
+                this.cnalList = result;
+            } )
+            .catch( error => { console.log( error ); } );
     }
 
     ionViewDidLoad() {

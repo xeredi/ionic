@@ -16,9 +16,11 @@ export class CategoriaDetailPage {
     constructor( public navCtrl: NavController, public navParams: NavParams, private pblrProvider: PublicadorProvider ) {
         this.ctgr = navParams.get( "ctgr" );
 
-        this.pblrProvider.selectByCategoria( this.ctgr.id ).then(( result ) => {
-            this.pblrList = result;
-        } );
+        this.pblrProvider.selectByCategoria( this.ctgr.id )
+            .then(( result ) => {
+                this.pblrList = result;
+            } )
+            .catch( error => { console.log( error ); } );
 
         // console.log( 'categoria: ' + this.ctgr );
     }

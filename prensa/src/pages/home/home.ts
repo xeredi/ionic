@@ -15,9 +15,12 @@ export class HomePage {
     constructor( public navCtrl: NavController, private ctgrProvider: CategoriaProvider ) {
         // console.log( "Cargar categorias" );
 
-        this.ctgrProvider.selectAll().then(( result ) => {
-            this.ctgrList = result;
-        } );
+        this.ctgrProvider.selectAll()
+            .then(( result ) => {
+                this.ctgrList = result;
+            } )
+            .catch( error => { console.log( error ); } )
+        ;
 
     }
 
