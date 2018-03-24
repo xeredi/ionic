@@ -1,6 +1,7 @@
-<ion-header> <ion-navbar> <ion-title>canal-detail</ion-title> </ion-navbar> </ion-header>
+<ion-header> <ion-navbar> <ion-title>{{cnal.nombre}}</ion-title> </ion-navbar> </ion-header>
 
-
-<ion-content padding> Canal: {{cnal.nombre}} <ion-list>
-<button ion-item *ngFor="let pbln of pblnList" (click)="noticiaDetail(pbln)">{{ pbln.titulo }}</button>
-</ion-list> </ion-content>
+<ion-content padding> <ion-list> <ion-item *ngFor="let pbln of pblnList"
+    (click)="noticiaDetail(pbln)"> <ion-thumbnail item-start> <img src="{{pbln.icon}}"> </ion-thumbnail>
+<h3 text-wrap>{{ pbln.titulo }}</h3>
+<p>{{ pbln.fecha }}</p>
+</ion-item> </ion-list> </ion-content>
