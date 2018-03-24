@@ -5,7 +5,7 @@
     <h2 [innerHtml]="pbln.titulo"></h2>
 </div>
 <img src="{{pbln.imUrl}}" />
+<button ion-button (click)="noticiaExterna(pbln.link)">Noticia Completa</button>
 <div class="card-subtitle" [innerHtml]="pbln.description"></div>
 </ion-card>
-<button ion-button (click)="noticiaExterna(pbln.link)">Noticia Completa: {{pbln.link}}</button>
 </ion-content>

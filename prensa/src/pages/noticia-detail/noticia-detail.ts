@@ -22,6 +22,6 @@ export class NoticiaDetailPage {
     noticiaExterna( url: string ) {
         console.log("external: " + url);
 
-        this.iab.create(url);
+        this.iab.create(url, '_blank', 'location=yes');
     }
 }
