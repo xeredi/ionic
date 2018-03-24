@@ -4,6 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpModule } from '@angular/http';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import { SQLite } from '@ionic-native/sqlite';
 
@@ -13,6 +14,7 @@ import { CategoriaDetailPage } from '../pages/categoria-detail/categoria-detail'
 import { PublicadorDetailPage } from '../pages/publicador-detail/publicador-detail';
 import { CanalDetailPage } from '../pages/canal-detail/canal-detail';
 import { NoticiaDetailPage } from '../pages/noticia-detail/noticia-detail';
+import { NoticiaExternaPage } from '../pages/noticia-externa/noticia-externa';
 
 import { CategoriaProvider } from '../providers/categoria/categoria';
 import { LoaderProvider } from '../providers/loader/loader';
@@ -27,7 +29,8 @@ import { CanalProvider } from '../providers/canal/canal';
         CategoriaDetailPage,
         PublicadorDetailPage,
         CanalDetailPage,
-        NoticiaDetailPage
+        NoticiaDetailPage,
+        NoticiaExternaPage
     ],
     imports: [
         BrowserModule, HttpModule,
@@ -40,19 +43,21 @@ import { CanalProvider } from '../providers/canal/canal';
         CategoriaDetailPage,
         PublicadorDetailPage,
         CanalDetailPage,
-        NoticiaDetailPage
+        NoticiaDetailPage,
+        NoticiaExternaPage
     ],
     providers: [
         StatusBar,
         SplashScreen,
         SQLite,
+        InAppBrowser,
         { provide: ErrorHandler, useClass: IonicErrorHandler },
         CategoriaProvider,
         LoaderProvider,
-    SqliteProvider,
-    PublicadorProvider,
-    PublicadorProvider,
-    CanalProvider
+        SqliteProvider,
+        PublicadorProvider,
+        PublicadorProvider,
+        CanalProvider
     ]
 } )
 export class AppModule { }

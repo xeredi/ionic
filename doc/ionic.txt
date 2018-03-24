@@ -11,10 +11,11 @@ CLI
 =====================================================================
 
 Nueva pagina
-$ ionig g page categoria-detail --no-module
+$ ionic g page categoria-detail --no-module
+$ ionic g page noticia-externa --no-module
 
 Nuevo provider
-$ ionig g provider categoria --no-module
+$ ionic g provider categoria --no-module
 
 BUILD
 =====================================================================
@@ -39,6 +40,8 @@ $ ionic cordova platform add android
 $ ionic cordova platform add browser
 $ ionic cordova plugin add cordova-sqlite-storage
 $ npm install --save @ionic-native/sqlite
+$ ionic cordova plugin add cordova-plugin-inappbrowser
+$ npm install --save @ionic-native/in-app-browser
 $ export ANDROID_HOME=/opt/android-sdk
 $ export PATH=$PATH:$ANDROID_HOME/tools
 $ ionic cordova run android

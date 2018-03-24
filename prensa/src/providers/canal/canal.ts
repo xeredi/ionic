@@ -159,7 +159,10 @@ export class CanalProvider extends SqliteProvider {
                         itemData.icon = feed.icon;
                     }
 
-                    console.log( "itemData: " + JSON.stringify( itemData ) );
+                    if ( itemData.imUrl == null ) {
+                        itemData.imUrl = itemData.icon;
+                    }
+
                     itemList.push( itemData );
                 } );
 

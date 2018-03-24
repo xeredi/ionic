@@ -20,6 +20,8 @@ export class CanalDetailPage {
                 this.pblnList = result;
             } )
             .catch( error => { console.log( error ); } );
+
+        console.log( "cnal: " + JSON.stringify( this.cnal ) );
     }
 
     ionViewDidLoad() {
